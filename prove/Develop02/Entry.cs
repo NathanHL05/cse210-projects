@@ -4,7 +4,7 @@ public class Entry
     public string _prompt;
     public string _entry;
 
-    public void display()
+    public void Display()
     {
         Console.WriteLine($"{_dateTime}");
         Console.WriteLine($"{_prompt}");

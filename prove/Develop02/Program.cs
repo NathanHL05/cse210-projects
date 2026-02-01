@@ -11,7 +11,7 @@ class Program
         {
             int option =0;
             bool i;
-            int streak = getStreak();
+            int streak = GetStreak();
             Console.WriteLine($"Your current writing streak is {streak} days\n1. Write new entry\n2. Display joural\n3. Save journal\n4. Load journal\n5. Close program\nWhich do you want to do? ");
             do
             {
@@ -37,23 +37,23 @@ class Program
             if (option == 1)
             {
                 MyJournal.makeEntry();
-                streakCounter();
+                StreakCounter();
             }
             else if(option == 2)
             {
-                MyJournal.display();
+                MyJournal.Display();
             }
             else if(option == 3)
             {
                 Console.WriteLine("How do you want to save your journal? ex: MyJournal.txt ");
                 string path = Console.ReadLine();
-                MyJournal.saveFile(path);
+                MyJournal.SaveFile(path);
             }
             else if(option == 4)
             {
                 Console.WriteLine("Which journal do you want to load? ex: MyJournal.txt ");
                 string path = Console.ReadLine();
-                MyJournal.loadFile(path);
+                MyJournal.LoadFile(path);
             } 
             else if (option == 5)
             {
@@ -62,7 +62,7 @@ class Program
         }
     }
 
-    static int getStreak()
+    static int GetStreak()
     {
         if (!File.Exists("streakCounter.txt"))
         {
@@ -79,7 +79,7 @@ class Program
         }
         
     }
-    static void streakCounter()
+    static void StreakCounter()
     {
         string contents = File.ReadAllText("streakCounter.txt");
         string[] streakInfo = contents.Split(new string[] {"|"}, StringSplitOptions.None);

@@ -16,15 +16,15 @@ public class Journal
         _entries[amount]._entry = Console.ReadLine();
     }
 
-    public void display()
+    public void Display()
     {
         foreach (Entry x in _entries)
         {
-            x.display();
+            x.Display();
         }
     }
 
-    public void saveFile(string fileName = "MyJournal.txt")
+    public void SaveFile(string fileName = "MyJournal.txt")
     {
         foreach (Entry x in _entries)
         {
@@ -32,7 +32,7 @@ public class Journal
         } 
     }
 
-    public void loadFile(string fileName = "MyJournal.txt")
+    public void LoadFile(string fileName = "MyJournal.txt")
     {
         if (!File.Exists(fileName))
         {

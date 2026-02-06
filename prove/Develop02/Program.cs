@@ -36,7 +36,7 @@ class Program
 
             if (option == 1)
             {
-                MyJournal.makeEntry();
+                MyJournal.MakeEntry();
                 StreakCounter();
             }
             else if(option == 2)

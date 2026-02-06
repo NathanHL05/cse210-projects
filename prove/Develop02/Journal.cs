@@ -2,7 +2,7 @@ public class Journal
 {
     public List<Entry> _entries = new List<Entry>();
 
-    public void makeEntry()
+    public void MakeEntry()
     {
         int amount = _entries.Count;
         _entries.Add(new Entry());

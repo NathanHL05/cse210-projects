@@ -99,12 +99,12 @@ class Program
                 {
                     string contents = File.ReadAllText("FileNames.txt");
                     contents = contents.Replace("\r\n", string.Empty);
-                    string[] titles = contents.Split(new string[] {"\n"}, StringSplitOptions.None);
-                    for(int i = 1; i < titles.Length; i++)
+                    string[] titles = contents.Split(new string[] {"\n"}, StringSplitOptions.RemoveEmptyEntries);
+                    for(int i = 0; i < titles.Length; i++)
                     {
-                     Console.WriteLine($"{i}: {titles[i-1]}");   
+                        Console.WriteLine($"{i+1}: {titles[i]}");   
                     }
-                    Console.WriteLine($"{titles.Length}: Make New File");
+                    Console.WriteLine($"{titles.Length+1}: Make New File");
                     int option = 0;
                     while(true)
                     {
@@ -116,13 +116,27 @@ class Program
                         }
                         Console.WriteLine("Give a file by number indicated");
                     }
-                    File.WriteAllText(titles[option-1], string.Empty);
-                    File.AppendAllLines(titles[option-1], new[] {$"{totalPoints}|"});
-                    foreach(Goal g in goals)
+                    if(option == titles.Length + 1)
                     {
-                        g.Save(titles[option-1]);
+                        Console.WriteLine("What do you want to name the file? ex: MyGoals");
+                        string file = Console.ReadLine();
+                        File.AppendAllLines("FileNames.txt", new[] {$"{file}\n"});
+                        File.WriteAllText(file, string.Empty);
+                        File.AppendAllLines(file, new[] {$"{totalPoints}|"});
+                        foreach(Goal g in goals)
+                        {
+                            g.Save(file);
+                        }
                     }
-                }                
+                    else{
+                        File.WriteAllText(titles[option-1], string.Empty);
+                        File.AppendAllLines(titles[option-1], new[] {$"{totalPoints}|"});
+                        foreach(Goal g in goals)
+                        {
+                            g.Save(titles[option-1]);
+                        }
+                    }
+                }         
             }
             if(input == 4)
             {
@@ -130,7 +144,6 @@ class Program
                 if (!fileInfo.Exists)
                 {
                     Console.WriteLine("There is no file to load from.");
-                    
                 }
                 else
                 {

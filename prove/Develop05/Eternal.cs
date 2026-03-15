@@ -25,4 +25,9 @@ public class Eternal : Goal
     {
         _repeated++;
     }
+
+    public override void Save(string fileName)
+    {
+        File.AppendAllLines(fileName, new[] {$"2\n{GetName()}\n{GetDescription()}\n{IsComplete()}\n{GetPoints()}\n{_repeated}|"});
+    }
 }

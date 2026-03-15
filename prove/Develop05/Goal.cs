@@ -6,9 +6,18 @@ public abstract class Goal
 
     private int _points;
 
+    public string GetDescription(){
+        return _description;
+    }
+
     public bool IsComplete()
     {
         return _complete;
+    }
+
+    public int GetPoints()
+    {
+        return _points;
     }
 
     public string GetName()
@@ -21,10 +30,7 @@ public abstract class Goal
         _complete = complete;
     }
 
-    public int GetPoints()
-    {
-        return _points;
-    }
+    
 
     public Goal(string description, int points, string name, bool complete)
     {
@@ -33,6 +39,8 @@ public abstract class Goal
         _points = points;
 
         _name = name;
+        
+        _complete = complete;
     }
 
     public Goal(string description, int points, string name)
@@ -47,6 +55,8 @@ public abstract class Goal
     }
 
     public abstract int Points();
+
+    public abstract void Save(string fileName);
 
     public abstract string GetProgress();
 

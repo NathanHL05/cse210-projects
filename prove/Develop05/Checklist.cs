@@ -12,7 +12,7 @@ public class Checklist : Goal
         _progress = 0;
         _reward = reward;
     }
-    public Checklist(int reward, int reps, string description, int points, int progress, string name) : base(description, points, name)
+    public Checklist(int reward, int reps, string description, int points, int progress, string name, bool complete) : base(description, points, name, complete)
     {
         _reps = reps;
         _progress = progress;
@@ -45,4 +45,9 @@ public class Checklist : Goal
             SetComplete(true);
         }
     }    
+
+    public override void Save(string fileName)
+    {
+        File.AppendAllLines(fileName, new[] {$"3\n{GetName()}\n{GetDescription()}\n{IsComplete()}\n{GetPoints()}\n{_reps}\n{_progress}\n{_reward}|"});
+    }
 }
